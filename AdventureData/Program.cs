@@ -26,12 +26,7 @@ namespace AdventureData
                 var cars = accessLayer.GetAllCars(bud);
                 foreach (var car in cars)
                 {
-                    Console.WriteLine($"Make: {car.Make}, Model:{car.Model}, Year: {car.Year} , Price: {car.Price}");
-                    //if ( int.Parse(budget) >= car.Price)
-                    //{
-                    //    Console.WriteLine($"Make: {car.Make}, Model:{car.Model}, Year: {car.Year} , Price: {car.Price}");
-                    //}
-                        
+                    Console.WriteLine($"Make: {car.Make}, Model:{car.Model}, Year: {car.Year} , Price: {car.Price}"); 
                 }
                 
             }
@@ -52,9 +47,7 @@ namespace AdventureData
                 {
                     Console.WriteLine(sport.Name);
                 }
-            }             //GetAppSettingsFile();
-            //ShowAdventureDepartments();
-            //Console.ReadKey();
+            }
         }
 
         static void GetAppSettingsFile()
@@ -64,17 +57,6 @@ namespace AdventureData
                                  .AddJsonFile("AppSettings.json", optional: false, reloadOnChange: true);
             _iconfiguration = builder.Build();
         }
-        //static void ShowAdventureDepartments()
-        //{
-        //    var deptDAL = new DepartmentDAL(_iconfiguration);
-        //    var lstDepartment = deptDAL.GetAllDepartments();
-        //    lstDepartment.ForEach(item =>
-        //    {
-        //        Console.WriteLine($"DeptID: {item.DepartmentID}" +
-        //            $" Name: {item.Name}" +
-        //            $" Grp Name: {item.GroupName}" +
-        //            $" Date: {item.ModifiedDate.ToShortDateString()}");
-        //    });
-        //}
+         
     }
 }
