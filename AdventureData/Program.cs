@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using AdventureData.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.IO; 
 
@@ -19,7 +20,7 @@ namespace AdventureData
                 Console.WriteLine("What is your budget?");
                 string budget = Console.ReadLine();
                 int bud = int.Parse(budget);
-                Console.WriteLine("These are the cars you can afford");
+                Console.WriteLine("These are the cars you can afford:");
 
 
 
@@ -32,23 +33,38 @@ namespace AdventureData
             }
             if (num == "2")
             {
-                var phones = accessLayer.GetAllPhones();
+                Console.WriteLine("What is your budget?");
+                string budget = Console.ReadLine();
+                int bud = int.Parse(budget);
+                Console.WriteLine("These are the phones you can afford:");
+
+
+                var phones = accessLayer.GetAllPhones(bud);
                 foreach (var phone in phones)
                 {
-                    Console.WriteLine(phone.Make);
+                    Console.WriteLine($"Make: {phone.Make}, Model:{phone.Model}, Year: {phone.Year} , Price: {phone.Price}");
                 }
             }
 
 
             if (num == "3")
+
             {
-                var sports = accessLayer.GetAllSports();
+
+                Console.WriteLine("How long do you have to play?");
+                string time = Console.ReadLine();
+                int t = int.Parse(time);
+                Console.WriteLine("These are the sports you can play with the time you have:");
+
+                var sports = accessLayer.GetAllSports(t);
                 foreach (var sport in sports)
                 {
-                    Console.WriteLine(sport.Name);
+                    Console.WriteLine($"Name: {sport.Name}, Number of players:{sport.PlayerNum}, Duration: {sport.Duration}");
                 }
             }
         }
+        //function to get the appsettings.json file
+
 
         static void GetAppSettingsFile()
         {
