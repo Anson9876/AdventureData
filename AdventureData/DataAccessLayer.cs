@@ -15,6 +15,9 @@ namespace AdventureData
         private readonly IConfiguration _configuration;
         private readonly string _connectionString;
         private readonly string _getAllCars = "DBA_GetAllCars";
+        private readonly string _getAllPhones = "DBA_GetAllPhones";
+        private readonly string _getAllSports = "DBA_GetAllSports";
+
 
         public DataAccessLayer(IConfiguration configuration)
         {
@@ -64,8 +67,9 @@ namespace AdventureData
             {
                 using (SqlConnection con = new SqlConnection(_connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand($"SELECT * FROM [Phones] WHERE Price <= {budget}", con);
-                    cmd.CommandType = CommandType.Text;
+                    SqlCommand cmd = new SqlCommand(_getAllPhones, con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@budget", budget));
                     con.Open();
                     SqlDataReader rdr = cmd.ExecuteReader();
                     while (rdr.Read())
@@ -93,8 +97,9 @@ namespace AdventureData
             {
                 using (SqlConnection con = new SqlConnection(_connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand($"SELECT * FROM [Sports] WHERE Duration <= {time}", con);
-                    cmd.CommandType = CommandType.Text;
+                    SqlCommand cmd = new SqlCommand(_getAllSports, con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@time", time));
                     con.Open();
                     SqlDataReader rdr = cmd.ExecuteReader();
                     while (rdr.Read())

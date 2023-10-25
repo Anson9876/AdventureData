@@ -25,10 +25,18 @@ namespace AdventureData
 
 
                 var cars = accessLayer.GetAllCars(bud);
-                foreach (var car in cars)
+                if (cars.Count == 0)
                 {
-                    Console.WriteLine($"Make: {car.Make}, Model:{car.Model}, Year: {car.Year} , Price: {car.Price}"); 
+                    Console.WriteLine("Unfortunately no cars are avaialable with your budget");
                 }
+                else 
+                {
+                    foreach (var car in cars)
+                    {
+                        Console.WriteLine($"Make: {car.Make}, Model:{car.Model}, Year: {car.Year} , Price: {car.Price}");
+                    }
+                }
+                
                 
             }
             if (num == "2")
